@@ -3,9 +3,9 @@ package controller
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
-	"github.com/testzone/gofield/serverGin/entity"
-	"github.com/testzone/gofield/serverGin/service"
-	"github.com/testzone/gofield/serverGin/validators"
+	"github.com/cookienyancloud/test_go/serverGin/entity"
+	"github.com/cookienyancloud/test_go/serverGin/service"
+	"github.com/cookienyancloud/test_go/serverGin/validators"
 	"net/http"
 )
 

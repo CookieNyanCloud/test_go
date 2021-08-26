@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/testzone/gofield/serverGin/controller"
-	"github.com/testzone/gofield/serverGin/middlewares"
-	"github.com/testzone/gofield/serverGin/service"
+	"github.com/cookienyancloud/test_go/serverGin/controller"
+	"github.com/cookienyancloud/test_go/serverGin/middlewares"
+	"github.com/cookienyancloud/test_go/serverGin/service"
 	gindump "github.com/tpkeeper/gin-dump"
 	"io"
 	"net/http"

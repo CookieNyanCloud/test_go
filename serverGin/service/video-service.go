@@ -1,6 +1,6 @@
 package service
 
-import "github.com/testzone/gofield/serverGin/entity"
+import "github.com/cookienyancloud/test_go/serverGin/entity"
 
 type VideoService interface {
 	Save(entity.Video) entity.Video
