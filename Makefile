@@ -4,4 +4,7 @@ gin:
 mux:
 	go run serverMux/server.go
 
-.PHONY: gin mux
+main:
+	go run main.go
+
+.PHONY: gin mux main

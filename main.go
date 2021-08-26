@@ -1,7 +1,7 @@
 package main
 
+import "github.com/cookienyancloud/test_go/serverGin"
 
-
-//func main()  {
-//
-//}
+func main()  {
+	serverGin.RunGin()
+}

@@ -1,11 +1,11 @@
-package main
+package serverGin
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"github.com/cookienyancloud/test_go/serverGin/controller"
 	"github.com/cookienyancloud/test_go/serverGin/middlewares"
 	"github.com/cookienyancloud/test_go/serverGin/service"
+	"github.com/gin-gonic/gin"
 	gindump "github.com/tpkeeper/gin-dump"
 	"io"
 	"net/http"
@@ -22,7 +22,7 @@ func setupOutput()  {
 	gin.DefaultWriter =io.MultiWriter(f,os.Stdout)
 }
 
-func main()  {
+func RunGin()  {
 	setupOutput()
 
 	server:= gin.New()

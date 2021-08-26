@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func main()  {
+func RunMux()  {
 	router := mux.NewRouter()
 	const post string = ":8000"
 	router.HandleFunc("/", func(resp http.ResponseWriter, req *http.Request) {

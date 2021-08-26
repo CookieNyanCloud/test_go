@@ -1,11 +1,11 @@
 package controller
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/go-playground/validator/v10"
 	"github.com/cookienyancloud/test_go/serverGin/entity"
 	"github.com/cookienyancloud/test_go/serverGin/service"
 	"github.com/cookienyancloud/test_go/serverGin/validators"
+	"github.com/gin-gonic/gin"
+	"github.com/go-playground/validator/v10"
 	"net/http"
 )
 
@@ -18,40 +18,40 @@ type VideoController interface {
 type controller struct {
 	service service.VideoService
 }
+
 var validate *validator.Validate
 
-func New(service service.VideoService) VideoController  {
+func New(service service.VideoService) VideoController {
 	validate = validator.New()
-	_=validate.RegisterValidation("is-cool",validators.ValidateCoolTitle)
+	_ = validate.RegisterValidation("is-cool", validators.ValidateCoolTitle)
 	return &controller{
 		service,
 	}
 }
 
-
-func (c *controller) FindAll() []entity.Video  {
+func (c *controller) FindAll() []entity.Video {
 	return c.service.FindAll()
 }
 
-func (c *controller) Save(ctx *gin.Context) error  {
+func (c *controller) Save(ctx *gin.Context) error {
 	var video entity.Video
-	err:=ctx.ShouldBindJSON(&video)
-	if err!=nil{
+	err := ctx.ShouldBindJSON(&video)
+	if err != nil {
 		return err
 	}
 	err = validate.Struct(video)
-	if err!=nil{
+	if err != nil {
 		return err
 	}
 	c.service.Save(video)
 	return nil
 }
 
-func (c *controller) ShowAll(ctx *gin.Context)  {
+func (c *controller) ShowAll(ctx *gin.Context) {
 	videos := c.service.FindAll()
-	data:= gin.H{
-		"title": "Video Page",
+	data := gin.H{
+		"title":  "Video Page",
 		"videos": videos,
 	}
-	ctx.HTML(http.StatusOK,"index.html",data)
+	ctx.HTML(http.StatusOK, "index.html", data)
 }
