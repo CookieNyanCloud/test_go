@@ -18,4 +18,4 @@ RUN go build -o /servergin
 
 #EXPOSE $PORT
 
-CMD ["./servergin"]
+CMD ["servergin"]

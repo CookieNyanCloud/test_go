@@ -1,4 +1,4 @@
-package main
+package serverMux
 
 import (
 	"fmt"
