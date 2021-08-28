@@ -7,4 +7,5 @@ require (
 	github.com/go-playground/validator/v10 v10.9.0
 	github.com/gorilla/mux v1.8.0
 	github.com/tpkeeper/gin-dump v1.0.0
+	gorm.io/gorm v1.21.14 // indirect
 )
