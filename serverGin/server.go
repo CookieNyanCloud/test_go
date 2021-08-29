@@ -3,6 +3,7 @@ package serverGin
 import (
 	"fmt"
 	"github.com/cookienyancloud/test_go/serverGin/controller"
+	"github.com/cookienyancloud/test_go/serverGin/httpGin"
 	"github.com/cookienyancloud/test_go/serverGin/middlewares"
 	"github.com/cookienyancloud/test_go/serverGin/service"
 	"github.com/gin-gonic/gin"
@@ -24,26 +25,28 @@ func setupOutput()  {
 
 func RunGin()  {
 	setupOutput()
-
 	server:= gin.New()
-
 	server.Static("/css","./templates/css")
-
 	server.LoadHTMLGlob("serverGin/templates/*.html")
-
 	server.Use(gin.Recovery(),
 		middlewares.Logger(),
 		//middlewares.BasicAuth(),
 		gindump.Dump(),
 	)
-
+	server.RedirectTrailingSlash = true
 	server.GET("/test", func(ctx *gin.Context) {
 		ctx.JSON(200,gin.H{
 			"message": "OK!",
 		})
 	})
 
-	apiRoutes:= server.Group("/api",middlewares.BasicAuth())
+	apiUser:= server.Group("/apiuser")
+	{
+		apiUser.POST("/signup", httpGin.SignUp)
+		apiUser.POST("/signin", httpGin.SignIn)
+	}
+
+	apiRoutes:= server.Group("/apivideo",middlewares.BasicAuth())
 	{
 
 		apiRoutes.GET("/videos", func(ctx *gin.Context) {
@@ -59,11 +62,16 @@ func RunGin()  {
 				ctx.JSON(http.StatusOK,gin.H{"message": "okay"})
 			}
 		})
+
+
 	}
+
 	viewRoutes := server.Group("/view")
 	{
 		viewRoutes.GET("/videos",videoController.ShowAll)
 	}
+
+	server.NoRoute(func(ctx *gin.Context) { ctx.JSON(http.StatusNotFound, gin.H{}) })
 
 	port:= os.Getenv("PORT")
 	if port == ""{

@@ -1,8 +1,8 @@
 gin:
-	go run serverGin/server.go
+	go run main.go -type=gin
 
 mux:
-	go run serverMux/server.go
+	go run -type=mux
 
 main:
 	go run main.go

@@ -2,8 +2,10 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"github.com/cookienyancloud/test_go/serverGin"
 	"github.com/cookienyancloud/test_go/serverMux"
+	"os"
 
 	//"github.com/cookienyancloud/test_go/serverMux"
 )
@@ -30,11 +32,12 @@ Usage:
 `
 
 func main()  {
-	serverType:= flag.String("type","Gin","server type")
-	//flag.Usage = usage
-	//flag.Parse()
-	println(*serverType)
-	switch *serverType {
+	flag.Usage = usage
+	var serverType string
+	flag.StringVar(&serverType,"type","gin",usageText)
+	flag.Parse()
+	println(serverType)
+	switch serverType {
 	case pickGin:
 		serverGin.RunGin()
 	case pickMux:
@@ -42,4 +45,10 @@ func main()  {
 	default:
 		serverGin.RunGin()
 	}
+}
+
+func usage() {
+	fmt.Print(usageText)
+	flag.PrintDefaults()
+	os.Exit(2)
 }
